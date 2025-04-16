@@ -1,3 +1,5 @@
+import java.util.PriorityQueue;
+
 public class Minimum_Cost_of_ropes {
   public static int minCost(int arr[], int n) {
     if (n <= 1) {
