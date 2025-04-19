@@ -19,5 +19,8 @@ public class o268_Missing_number {
     }
     public static void main(String[] args) {
       
+        o268_Missing_number obj = new o268_Missing_number();
+            int[] nums = { 3, 0, 1 };
+            System.out.println(obj.missingNumber(nums)); 
     }
 }
