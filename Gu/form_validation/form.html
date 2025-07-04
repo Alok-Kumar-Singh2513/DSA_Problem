@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Internship / Placement Form</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background: linear-gradient(to right, #ece9e6, #ffffff);
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 2rem auto;
+        padding: 2rem;
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 1.5rem;
+      }
+
+      form label {
+        display: block;
+        margin: 12px 0 5px;
+        font-weight: bold;
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+        font-size: 16px;
+      }
+
+      input[type="submit"] {
+        background-color: #0077ff;
+        color: white;
+        border: none;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #005fcc;
+      }
+
+      .error-message {
+        color: red;
+        margin-bottom: 1rem;
+      }
+
+      .output {
+        display: none;
+        background: #f9f9f9;
+        border-left: 5px solid #0077ff;
+        padding: 1.5rem;
+        margin-top: 2rem;
+        border-radius: 10px;
+      }
+
+      .output h3 {
+        margin-bottom: 1rem;
+      }
+
+      .output p {
+        margin: 0.5rem 0;
+        color: #444;
+      }
+
+      @media (max-width: 600px) {
+        .container {
+          padding: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Placement / Internship Application</h2>
+      <form method="" id="application-form">
+        <label>First Name</label>
+        <input type="text" id="firstName" required />
+
+        <label for="middleName" >Middle Name</label>
+        <input type="text" id="middleName" />
+
+        <label>Last Name</label>
+        <input type="text" id="lastName" required />
+
+        <label>Date of Birth</label>
+        <input type="date" id="dob" required />
+
+        <label>Gender</label>
+        <select id="gender" required>
+          <option value="">Select</option>
+          <option>Male</option>
+          <option>Female</option>
+          <option>Other</option>
+        </select>
+
+        <label>Email</label>
+        <input type="email" id="email" required />
+
+        <label>Mobile</label>
+        <input type="text" id="mobile" required pattern="\d{10}" />
+
+        <label>State</label>
+        <select id="state" required>
+          <option value="">Select State</option>
+          <option>Maharashtra</option>
+          <option>Karnataka</option>
+          <option>Delhi</option>
+          <option>Gujarat</option>
+        </select>
+
+        <label>District</label>
+        <select id="district" required>
+          <option value="">Select District</option>
+          <option>Pune</option>
+          <option>Bangalore Urban</option>
+          <option>New Delhi</option>
+          <option>Ahmedabad</option>
+        </select>
+
+        <label>City</label>
+        <input type="text" id="city" required />
+
+        <label>Pin Code</label>
+        <input type="text" id="pincode" required pattern="\d{6}" />
+
+        <label>Full Address</label>
+        <textarea id="address" required></textarea>
+
+        <label>Education Level</label>
+        <select id="education" required>
+          <option value="">Select</option>
+          <option>10th</option>
+          <option>12th</option>
+          <option>Diploma</option>
+          <option>Undergraduate</option>
+          <option>Postgraduate</option>
+        </select>
+
+        <label>School/College Name</label>
+        <input type="text" id="school" required />
+
+        <label>Marks (%)</label>
+        <input type="number" id="marks" min="0" max="100" required />
+
+        <div class="error-message" id="form-error"></div>
+        <input type="submit" value="Submit" />
+      </form>
+
+      <div class="output" id="form-output">
+        <h3>Submission Summary</h3>
+        <div id="output-content"></div>
+      </div>
+    </div>
+
+    <script>
+      const form = document.getElementById("application-form");
+      const output = document.getElementById("form-output");
+      const content = document.getElementById("output-content");
+      const error = document.getElementById("form-error");
+
+      function validateEmail(email) {
+        const re = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
+        return re.test(email.toLowerCase());
+      }
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        error.textContent = "";
+
+        const data = {
+          firstName: document.getElementById("firstName").value.trim(),
+          middleName: document.getElementById("middleName").value.trim(),
+          lastName: document.getElementById("lastName").value.trim(),
+          dob: document.getElementById("dob").value,
+          gender: document.getElementById("gender").value,
+          email: document.getElementById("email").value.trim(),
+          mobile: document.getElementById("mobile").value.trim(),
+          state: document.getElementById("state").value,
+          district: document.getElementById("district").value,
+          city: document.getElementById("city").value.trim(),
+          pincode: document.getElementById("pincode").value.trim(),
+          address: document.getElementById("address").value.trim(),
+          education: document.getElementById("education").value,
+          school: document.getElementById("school").value.trim(),
+          marks: document.getElementById("marks").value,
+        };
+
+        // Validate
+        if (!validateEmail(data.email)) {
+          error.textContent = "Invalid email format.";
+          return;
+        }
+
+        if (!/^\\d{10}$/.test(data.mobile)) {
+          error.textContent = "Mobile number must be 10 digits.";
+          return;
+        }
+
+        if (!/^\\d{6}$/.test(data.pincode)) {
+          error.textContent = "Pincode must be 6 digits.";
+          return;
+        }
+
+        // Display
+        output.style.display = "block";
+        content.innerHTML = `
+        <p><strong>Name:</strong> ${data.firstName} ${data.middleName} ${data.lastName}</p>
+        <p><strong>DOB:</strong> ${data.dob}</p>
+        <p><strong>Gender:</strong> ${data.gender}</p>
+        <p><strong>Email:</strong> ${data.email}</p>
+        <p><strong>Mobile:</strong> ${data.mobile}</p>
+        <p><strong>State:</strong> ${data.state}</p>
+        <p><strong>District:</strong> ${data.district}</p>
+        <p><strong>City:</strong> ${data.city}</p>
+        <p><strong>Pin Code:</strong> ${data.pincode}</p>
+        <p><strong>Address:</strong> ${data.address}</p>
+        <p><strong>Education:</strong> ${data.education}</p>
+        <p><strong>School:</strong> ${data.school}</p>
+        <p><strong>Marks:</strong> ${data.marks}%</p>
+      `;
+
+        form.reset();
+        window.scrollTo({
+          top: document.body.scrollHeight,
+          behavior: "smooth",
+        });
+      });
+    </script>
+  </body>
+</html>

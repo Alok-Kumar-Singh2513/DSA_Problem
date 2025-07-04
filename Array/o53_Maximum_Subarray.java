@@ -10,7 +10,6 @@ public class o53_Maximum_Subarray {
         if (sum > maxi) {
             maxi = sum;
         }
-
         if (sum < 0) {
             sum = 0;
         }

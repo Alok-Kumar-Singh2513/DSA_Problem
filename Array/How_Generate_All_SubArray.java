@@ -3,7 +3,6 @@ import java.util.ArrayList;
 public class How_Generate_All_SubArray {
     public static ArrayList<ArrayList<Integer>> generateSubArray(int[] arr) {
         ArrayList<ArrayList<Integer>> subArrays = new ArrayList<>();
-
         for (int i = 0; i < arr.length; i++) {
             ArrayList<Integer> current = new ArrayList<>();
             for (int j = i; j < arr.length; j++) {
@@ -11,7 +10,6 @@ public class How_Generate_All_SubArray {
                 subArrays.add(new ArrayList<>(current)); 
             }
         }
-
         return subArrays;
     }
 

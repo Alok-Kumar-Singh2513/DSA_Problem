@@ -1,29 +1,33 @@
 package Sliding_Window;
 
 public class o1004_Max_Consecutive_Ones_III {
-  public int longestOnes(int[] nums, int k) {
-    int left = 0, right = 0;
-    int maxLength = 0;
-    int zeroCount = 0;
+   public int longestOnes(int[] nums, int k) {
+        int right = 0;
+        int left = 0;
+        int zero = 0;
+        int maxLen = 0;
 
-    while (right < nums.length) {
-      if (nums[right] == 0) {
-        zeroCount++;
-      }
+        // Loop through the array with the right pointer
+        while (right < nums.length) {
+            if (nums[right] == 0) {
+                zero++;  // Count the zeros encountered
+            }
 
-      while (zeroCount > k) {
-        if (nums[left] == 0) {
-          zeroCount--;
+            // When the count of zeros exceeds k, move the left pointer
+            while (zero > k) {
+                if (nums[left] == 0) {
+                    zero--;  // Decrease the zero count
+                }
+                left++;  // Move the left pointer forward to reduce the window size
+            }
+
+            // Calculate the length of the current valid window
+            maxLen = Math.max(maxLen, right - left + 1);
+            right++;  // Move the right pointer forward
         }
-        left++;
-      }
 
-      maxLength = Math.max(maxLength, right - left + 1);
-      right++;
+        return maxLen; 
     }
-
-    return maxLength;
-  }
   public static void main(String[] args) {
     o1004_Max_Consecutive_Ones_III solution = new o1004_Max_Consecutive_Ones_III();
     int[] nums = {1, 1, 0, 0, 1, 1, 1, 0, 1};

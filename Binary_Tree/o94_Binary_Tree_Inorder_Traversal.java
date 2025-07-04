@@ -1,0 +1,42 @@
+package Binary_Tree;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class o94_Binary_Tree_Inorder_Traversal {
+  public static class TreeNode {
+    int val;
+     TreeNode left;
+     TreeNode right;
+
+     TreeNode(int val, TreeNode left, TreeNode right) {
+         this.val = val;
+         this.left = left;
+         this.right = right;
+     }
+ }
+   
+
+    public static List<Integer> inorderTraversal(TreeNode root) {
+       List<Integer> ans = new ArrayList<>();
+        dfs(root,ans);
+        return ans;
+    }
+
+    private static void dfs(TreeNode root, List<Integer> ans) {
+        if (root == null) {
+            return;
+        }
+        dfs(root.left,ans);
+        ans.add(root.val);
+        dfs(root.right,ans);
+    }
+    public static void main(String[] args) {
+        TreeNode leftChild = new TreeNode(2, null, null);
+        TreeNode rightChild = new TreeNode(3, null, null);
+        TreeNode root = new TreeNode(1, leftChild, rightChild);
+
+        List<Integer> result = inorderTraversal(root);
+        System.out.println(result);
+    }
+}

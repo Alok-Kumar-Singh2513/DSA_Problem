@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AJAX Example</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        padding: 30px;
+        text-align: center;
+      }
+
+      h1 {
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      #content {
+        margin-top: 20px;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 18px;
+        color: #444;
+      }
+    </style>
+    <script>
+      function loadData() {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState == 4 && xhr.status == 200) {
+            document.getElementById("content").innerHTML = xhr.responseText;
+          }
+        };
+        xhr.open("GET", "data.txt", true);
+        xhr.send();
+      }
+    </script>
+  </head>
+  <body>
+    <h1>AJAX Example</h1>
+    <button onclick="loadData()">Load Data</button>
+    <div id="content">Data will appear here...</div>
+  </body>
+</html>
