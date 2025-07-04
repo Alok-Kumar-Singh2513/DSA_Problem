@@ -1,0 +1,22 @@
+import java.util.Arrays;
+
+public class o8LongestCommonPrefix {
+  public static String longestCommonPrefix(String[] strs) {
+    if (strs == null || strs.length == 0) {
+      return "";
+    }
+   Arrays.sort(strs);
+    String first = strs[0];
+    String last = strs[strs.length - 1];
+    int index = 0;
+  while (index <first.length()){
+            if (first.charAt(index)==last.charAt(index)){
+                index++;
+            }
+            else {
+                break;
+            }
+        }
+    return first.substring(0, index);
+  }
+}
